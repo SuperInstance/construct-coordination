@@ -611,3 +611,21 @@ claim the paradigm by working on the physics first."*
 *— synthesized from CRITICAL-REVIEW.md*
 
 *2026-06-04*
+
+---
+
+## Addendum: Casey's Strategic Correction (2026-06-04)
+
+The strategic plan above recommends dropping Zed and Weaviate forks. **This is incorrect for our model.**
+
+We are not a startup trimming to ship one product. We are a research fleet with 100+ concept seeds. Every repo — even half-built ones — preserves a valid idea that can become the golden idea when a new technology or innovation makes it suddenly relevant.
+
+**The real framework:**
+
+1. **Ship focus**: 2-3 repos that can build their own followings (hermit-claw, open-terminal, spreadsheet)
+2. **Cold storage**: All other repos preserved as concept-ready R&D — pick at them when inspiration or new tech strikes
+3. **Never delete**: Recreating a half-built concept from scratch is far harder than picking up an existing sketch
+
+The repos are a creative reservoir. Having 100+ partly-built repos is a feature, not a bug. The industry moves fast and our concepts are valid — we just need them ready for when the right catalyst arrives.
+
+This applies to the entire fleet: Main, Forgemaster, and Oracle2 should all treat the SuperInstance org as a living concept library, not a product backlog to triage.

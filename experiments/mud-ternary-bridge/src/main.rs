@@ -11,7 +11,7 @@
 
 use std::collections::HashMap;
 
-use ternary_cell::{CellGrid, TernaryCell, TernaryMessenger};
+use ternary_cell::{TernaryCell, TernaryMessenger};
 use ternary_current::{
     Current, CurrentMap, CurrentStrength, DownstreamConsumer, FlowDirection, RoomId, UpstreamSource,
 };
@@ -44,7 +44,7 @@ fn count_items(room: &Room) -> usize {
     room.snapshot()
         .environment
         .iter()
-        .filter(|(k, v)| k.starts_with("item_") && v != "0")
+        .filter(|(k, v)| k.starts_with("item_") && *v != "0")
         .map(|(_, v)| v.parse::<usize>().unwrap_or(0))
         .sum()
 }
@@ -54,7 +54,7 @@ fn list_items(room: &Room) -> Vec<String> {
     room.snapshot()
         .environment
         .iter()
-        .filter(|(k, v)| k.starts_with("item_") && v != "0")
+        .filter(|(k, v)| k.starts_with("item_") && *v != "0")
         .map(|(k, v)| {
             let count: usize = v.parse().unwrap_or(0);
             format!("{}x{}", k.strip_prefix("item_").unwrap_or(k), count)
@@ -332,7 +332,7 @@ fn main() {
             let room_snapshot = coord.room(agent.current_room).map(|r| r.snapshot());
             let items_in_room = room_snapshot.as_ref().map(|s| {
                 s.environment.iter()
-                    .filter(|(k, v)| k.starts_with("item_") && v != "0")
+                    .filter(|(k, v)| k.starts_with("item_") && *v != "0")
                     .count()
             }).unwrap_or(0);
 
@@ -430,7 +430,7 @@ fn main() {
                         let item_name = room.snapshot()
                             .environment
                             .iter()
-                            .find(|(k, v)| k.starts_with("item_") && v != "0")
+                            .find(|(k, v)| k.starts_with("item_") && *v != "0")
                             .map(|(k, _)| k.strip_prefix("item_").unwrap_or(k).to_string());
 
                         if let Some(name) = item_name {

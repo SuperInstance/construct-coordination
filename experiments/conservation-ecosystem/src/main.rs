@@ -5,9 +5,8 @@
 //! and species distribution over 2000 ticks to test whether gamma+H is conserved.
 
 use rand::Rng;
-use std::collections::HashMap;
 
-use ternary_cell::{CellGrid, TernaryCell, TernaryMessenger};
+use ternary_cell::{TernaryCell, TernaryMessenger};
 use strategy_ecology::Species as StratSpecies;
 
 /// A cell in the ecosystem that carries a strategy species tag.
@@ -50,9 +49,10 @@ impl EcoGrid {
 
     fn populate_random(&mut self) {
         let mut rng = rand::thread_rng();
-        let species = StratSpecies::all();
-        for y in 0..self.height {
-            for x in 0..self.width {
+        let w = self.width;
+        let h = self.height;
+        for y in 0..h {
+            for x in 0..w {
                 let sp_idx = rng.gen_range(0..5);
                 let ternary_val = match sp_idx {
                     0 => 1,  // Explorer -> Signal
@@ -64,9 +64,8 @@ impl EcoGrid {
                 };
                 let id = self.next_id;
                 self.next_id += 1;
-                let mut cell = TernaryCell::with_value(id, ternary_val);
-                cell.energy = 10;
-                self.grid[self.idx(x, y)] = Some(EcoCell {
+                let cell = TernaryCell::with_value(id, ternary_val);
+                self.grid[y * w + x] = Some(EcoCell {
                     cell,
                     species: sp_idx,
                     fitness: 0.5,
@@ -75,12 +74,12 @@ impl EcoGrid {
         }
     }
 
-    fn neighbors(&self, x: usize, y: usize) -> Vec<(usize, usize)> {
+    fn neighbors_of(width: usize, height: usize, x: usize, y: usize) -> Vec<(usize, usize)> {
         let mut result = Vec::new();
         if x > 0 { result.push((x - 1, y)); }
-        if x + 1 < self.width { result.push((x + 1, y)); }
+        if x + 1 < width { result.push((x + 1, y)); }
         if y > 0 { result.push((x, y - 1)); }
-        if y + 1 < self.height { result.push((x, y + 1)); }
+        if y + 1 < height { result.push((x, y + 1)); }
         result
     }
 
@@ -89,51 +88,50 @@ impl EcoGrid {
         let width = self.width;
         let height = self.height;
 
-        // Collect species info for neighbor lookup
+        // Collect species info for neighbor lookup (avoid borrow conflicts)
         let species_map: Vec<Option<usize>> = self.grid.iter().map(|c| c.as_ref().map(|c| c.species)).collect();
 
         for y in 0..height {
             for x in 0..width {
-                let idx = self.idx(x, y);
-                if let Some(ec) = &mut self.grid[idx] {
-                    let my_species = ec.species;
-                    let my_val = ec.cell.ternary_value;
-                    let my_energy = ec.cell.energy;
+                let idx = y * width + x;
+                if species_map[idx].is_none() {
+                    continue;
+                }
+                let my_species = species_map[idx].unwrap();
+                let my_energy = self.grid[idx].as_ref().unwrap().cell.energy;
 
-                    let mut coop_bonus = 0.0_f64;
-                    let mut compat_bonus = 0.0_f64;
-                    let mut neighbor_count = 0;
+                let mut coop_bonus = 0.0_f64;
+                let mut compat_bonus = 0.0_f64;
 
-                    for (nx, ny) in self.neighbors(x, y) {
-                        let nidx = self.idx(nx, ny);
-                        if let Some(Some(n_sp)) = species_map.get(nidx) {
-                            neighbor_count += 1;
-                            // Cooperation: same species nearby
-                            if *n_sp == my_species {
-                                coop_bonus += 0.15;
-                            }
-                            // Compatibility: different ternary values create balance
-                            // Matching: Diplomats (0) coexist well with everyone
-                            if my_species == 1 || *n_sp == 1 {
-                                compat_bonus += 0.05;
-                            }
+                for (nx, ny) in Self::neighbors_of(width, height, x, y) {
+                    let nidx = ny * width + nx;
+                    if let Some(n_sp) = species_map[nidx] {
+                        // Cooperation: same species nearby
+                        if n_sp == my_species {
+                            coop_bonus += 0.15;
+                        }
+                        // Compatibility: Diplomats coexist well with everyone
+                        if my_species == 1 || n_sp == 1 {
+                            compat_bonus += 0.05;
                         }
                     }
+                }
 
-                    // Energy-based survival fitness
-                    let energy_fitness = (my_energy as f64 / 20.0).min(1.0);
+                // Energy-based survival fitness
+                let energy_fitness = (my_energy as f64 / 20.0).min(1.0);
 
-                    // Species-specific base fitness
-                    let base = match my_species {
-                        0 => 0.4, // Explorer: moderate baseline
-                        1 => 0.5, // Diplomat: high baseline (adapter)
-                        2 => 0.3, // Marksman: low baseline, needs precision
-                        3 => 0.45, // Climber: moderate
-                        4 => 0.35, // Prospector: low baseline, needs space
-                        _ => 0.4,
-                    };
+                // Species-specific base fitness
+                let base = match my_species {
+                    0 => 0.4,  // Explorer
+                    1 => 0.5,  // Diplomat
+                    2 => 0.3,  // Marksman
+                    3 => 0.45, // Climber
+                    4 => 0.35, // Prospector
+                    _ => 0.4,
+                };
 
-                    let fitness = base + energy_fitness * 0.3 + coop_bonus + compat_bonus;
+                let fitness = base + energy_fitness * 0.3 + coop_bonus + compat_bonus;
+                if let Some(ec) = &mut self.grid[idx] {
                     ec.fitness = fitness.clamp(0.0, 1.0);
                 }
             }
@@ -142,7 +140,6 @@ impl EcoGrid {
 
     /// Selection: remove low-fitness cells.
     fn selection(&mut self) -> usize {
-        let mut rng = rand::thread_rng();
         let mut died = 0;
         for ec_opt in &mut self.grid {
             if let Some(ec) = ec_opt {
@@ -162,17 +159,18 @@ impl EcoGrid {
         let mut rng = rand::thread_rng();
         let mut born = 0;
 
-        // Collect reproduction candidates
-        let mut candidates: Vec<(usize, usize, usize, usize)> = Vec::new(); // (x, y, nx, ny)
+        // Collect reproduction candidates: (parent_idx, target_idx, parent_species, parent_energy)
+        let mut candidates: Vec<(usize, usize, usize, i32)> = Vec::new();
+
         for y in 0..height {
             for x in 0..width {
-                let idx = self.idx(x, y);
+                let idx = y * width + x;
                 if let Some(ec) = &self.grid[idx] {
                     if ec.fitness > self.reproduction_threshold && ec.cell.energy >= 8 {
-                        for (nx, ny) in self.neighbors(x, y) {
-                            let nidx = self.idx(nx, ny);
+                        for (nx, ny) in Self::neighbors_of(width, height, x, y) {
+                            let nidx = ny * width + nx;
                             if self.grid[nidx].is_none() {
-                                candidates.push((x, y, nx, ny));
+                                candidates.push((idx, nidx, ec.species, ec.cell.energy));
                             }
                         }
                     }
@@ -180,43 +178,43 @@ impl EcoGrid {
             }
         }
 
-        for (x, y, nx, ny) in candidates {
-            let idx = self.idx(x, y);
-            let nidx = self.idx(nx, ny);
+        for (pidx, nidx, parent_species, parent_energy) in candidates {
             if self.grid[nidx].is_some() {
-                continue; // already filled
+                continue;
             }
-            if let Some(parent) = &mut self.grid[idx] {
-                if parent.cell.energy < 5 {
-                    continue;
-                }
-                // Halve parent energy
-                parent.cell.energy /= 2;
-
-                let id = self.next_id;
-                self.next_id += 1;
-
-                // Offspring inherits species (with possible mutation)
-                let mut child_species = parent.species;
-                if rng.gen::<f64>() < self.mutation_rate {
-                    child_species = rng.gen_range(0..5);
-                }
-
-                let ternary_val = match child_species {
-                    0 => 1, 1 => 0, 2 => -1, 3 => 1, 4 => -1, _ => 0,
-                };
-
-                let mut child_cell = TernaryCell::with_value(id, ternary_val);
-                child_cell.energy = parent.cell.energy;
-                child_cell.generation = parent.cell.generation + 1;
-
-                self.grid[nidx] = Some(EcoCell {
-                    cell: child_cell,
-                    species: child_species,
-                    fitness: 0.5,
-                });
-                born += 1;
+            let parent = match &mut self.grid[pidx] {
+                Some(p) => p,
+                None => continue,
+            };
+            if parent.cell.energy < 5 {
+                continue;
             }
+            parent.cell.energy /= 2;
+
+            let id = self.next_id;
+            self.next_id += 1;
+
+            // Offspring inherits species (with possible mutation)
+            let child_species = if rng.gen::<f64>() < self.mutation_rate {
+                rng.gen_range(0..5)
+            } else {
+                parent_species
+            };
+
+            let ternary_val = match child_species {
+                0 => 1, 1 => 0, 2 => -1, 3 => 1, 4 => -1, _ => 0,
+            };
+
+            let mut child_cell = TernaryCell::with_value(id, ternary_val);
+            child_cell.energy = parent.cell.energy;
+            child_cell.generation = parent.cell.generation + 1;
+
+            self.grid[nidx] = Some(EcoCell {
+                cell: child_cell,
+                species: child_species,
+                fitness: 0.5,
+            });
+            born += 1;
         }
 
         born
@@ -249,7 +247,7 @@ impl EcoGrid {
         let mut emissions: Vec<(usize, usize, TernaryMessenger)> = Vec::new();
         for y in 0..height {
             for x in 0..width {
-                let idx = self.idx(x, y);
+                let idx = y * width + x;
                 if let Some(ec) = &self.grid[idx] {
                     emissions.push((x, y, ec.cell.emit()));
                 }
@@ -258,8 +256,8 @@ impl EcoGrid {
 
         // Deliver signals
         for (x, y, msg) in emissions {
-            for (nx, ny) in self.neighbors(x, y) {
-                let nidx = self.idx(nx, ny);
+            for (nx, ny) in Self::neighbors_of(width, height, x, y) {
+                let nidx = ny * width + nx;
                 if let Some(ec) = &mut self.grid[nidx] {
                     ec.cell.receive(msg);
                 }
@@ -278,12 +276,12 @@ impl EcoGrid {
     }
 
     /// Run one full evolutionary tick.
-    fn evolve(&mut self) -> (usize, usize, usize) {
+    fn evolve(&mut self) {
         self.cell_dynamics();
         self.compute_fitness();
-        let died = self.selection();
-        let born = self.reproduction();
-        let mutated = self.mutation();
+        self.selection();
+        self.reproduction();
+        self.mutation();
 
         // Energy regeneration for surviving cells
         for ec_opt in &mut self.grid {
@@ -293,7 +291,6 @@ impl EcoGrid {
         }
 
         self.tick += 1;
-        (died, born, mutated)
     }
 
     /// Count alive cells.
@@ -331,7 +328,6 @@ impl EcoGrid {
     }
 
     /// Compute gamma: conservation ratio (balance of ternary values).
-    /// Gamma = 1 - |f_pos - f_neg|, where f is fraction.
     fn gamma(&self) -> f64 {
         let alive = self.alive_count() as f64;
         if alive == 0.0 {
@@ -383,11 +379,11 @@ fn main() {
 
     // Track gamma+H for analysis
     let mut gamma_h_series: Vec<(usize, f64, usize)> = Vec::new(); // (tick, gamma+H, living_species)
-    let mut species_alive_at: [Option<usize>; 5] = [None; 5]; // last tick species was alive
-    let mut species_died_at: [Option<usize>; 5] = [None; 5]; // tick species died
+    let mut species_alive_at: [Option<usize>; 5] = [None; 5];
+    let mut species_died_at: [Option<usize>; 5] = [None; 5];
 
     for tick in 0..total_ticks {
-        let (died, born, mutated) = grid.evolve();
+        grid.evolve();
 
         let alive = grid.alive_count();
         let gamma = grid.gamma();
@@ -441,14 +437,11 @@ fn main() {
         eprintln!("  Range:  {:.4}", max - min);
         eprintln!("  CV:     {:.4}", stddev / mean.abs());
 
-        // First/last 200 comparison
-        let first_200: Vec<f64> = values.iter().take(200).copied().collect();
-        let last_200: Vec<f64> = values.iter().rev().take(200).copied().collect();
-        let first_mean = first_200.iter().sum::<f64>() / first_200.len() as f64;
-        let last_mean = last_200.iter().sum::<f64>() / last_200.len() as f64;
-        eprintln!("  First 200 mean: {:.4}", first_mean);
-        eprintln!("  Last 200 mean:  {:.4}", last_mean);
-        eprintln!("  Drift:          {:.4}", last_mean - first_mean);
+        let first_200_mean: f64 = values.iter().take(200).sum::<f64>() / values.len().min(200) as f64;
+        let last_200_mean: f64 = values.iter().rev().take(200).sum::<f64>() / values.len().min(200) as f64;
+        eprintln!("  First 200 mean: {:.4}", first_200_mean);
+        eprintln!("  Last 200 mean:  {:.4}", last_200_mean);
+        eprintln!("  Drift:          {:.4}", last_200_mean - first_200_mean);
     }
 
     // Species survival
@@ -464,14 +457,14 @@ fn main() {
 
     // Phase transitions: sudden drops in species count
     eprintln!("\nPhase transitions (sudden drops in living species count):");
-    let mut prev_sp = 5;
+    let mut prev_sp: i32 = 5;
     let mut transitions: Vec<(usize, i32)> = Vec::new();
     for &(tick, _, living_sp) in &gamma_h_series {
         let delta = living_sp as i32 - prev_sp;
         if delta < 0 {
             transitions.push((tick, delta));
         }
-        prev_sp = living_sp;
+        prev_sp = living_sp as i32;
     }
     if transitions.is_empty() {
         eprintln!("  No species loss transitions detected");

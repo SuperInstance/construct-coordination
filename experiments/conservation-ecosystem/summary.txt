@@ -1,0 +1,26 @@
+
+=== SUMMARY ===
+gamma+H statistics:
+  Mean:   2.4922
+  StdDev: 0.2811
+  Min:    2.2539
+  Max:    3.2739
+  Range:  1.0200
+  CV:     0.1128
+  First 200 mean: 3.0960
+  Last 200 mean:  2.3254
+  Drift:          -0.7706
+
+Species survival:
+  0 (Explorer) SURVIVED with 18 individuals
+  1 (Diplomat) SURVIVED with 27 individuals
+  2 (Marksman) SURVIVED with 22 individuals
+  3 (Climber) SURVIVED with 15 individuals
+  4 (Prospector) SURVIVED with 18 individuals
+
+Phase transitions (sudden drops in living species count):
+  No species loss transitions detected
+
+Correlation between gamma+H and species diversity:
+  Pearson r = 0.0000
+  Interpretation: Weak/none - conservation and diversity are largely independent

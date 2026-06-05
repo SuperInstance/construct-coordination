@@ -1,0 +1,10 @@
+Total operations: 19683
+Commutative: 729
+Associative: 113
+Has identity: 243
+Has inverses: 51
+Groups (assoc+identity+inverse): 3
+
+Group op #5681: identity=0, op(-1,-1)=1, op(0,0)=0, op(1,1)=-1
+Group op #8229: identity=-1, op(-1,-1)=-1, op(0,0)=1, op(1,1)=0
+Group op #15613: identity=1, op(-1,-1)=0, op(0,0)=-1, op(1,1)=1

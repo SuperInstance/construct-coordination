@@ -1,0 +1,8 @@
+[package]
+name = "multi-objective-seed"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ternary-genome = { path = "../../../ternary-genome" }
+ternary-fitness = { path = "../../../ternary-fitness" }

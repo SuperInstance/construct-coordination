@@ -1,1 +1,0 @@
-/home/phoenix/repos/construct-coordination/experiments/rigging-ripple/target/debug/rigging-ripple: /home/phoenix/repos/construct-coordination/experiments/rigging-ripple/src/main.rs /home/phoenix/repos/ternary-rigging/src/lib.rs

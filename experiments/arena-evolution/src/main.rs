@@ -117,10 +117,12 @@ fn run_tournament(competitors: &[Competitor], seed: u32) -> HashMap<u64, (u32, u
                     // Random perturbation event
                     let noise_a = dice.roll();
                     let noise_b = dice.roll();
-                    noisy_a_strategy[pos % noisy_a_strategy.len()] = match noise_a {
+                    let idx_a = pos % noisy_a_strategy.len();
+                    let idx_b = pos % noisy_b_strategy.len();
+                    noisy_a_strategy[idx_a] = match noise_a {
                         DTrit::Neg => Trit::Neg, DTrit::Zero => Trit::Zero, DTrit::Pos => Trit::Pos,
                     };
-                    noisy_b_strategy[pos % noisy_b_strategy.len()] = match noise_b {
+                    noisy_b_strategy[idx_b] = match noise_b {
                         DTrit::Neg => Trit::Neg, DTrit::Zero => Trit::Zero, DTrit::Pos => Trit::Pos,
                     };
                 }

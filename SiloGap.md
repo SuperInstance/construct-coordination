@@ -13,7 +13,18 @@
 - **The Compiler Silo**: compiler, optimizer, grammar (Siloed)
 - **The Nautical Silo**: anchor, captain, harbor, helm (Thematically linked, logically isolated)
 
-**The Gold Standard**: Audio/Music cluster (bite, echo, wave, rack, harmonic) — dense cross-referencing mesh.
+---
+
+## 🧬 Symmetry Group Mapping
+
+We no longer categorize by "Silo" (failure of connection), but by **Symmetry Group** (invariant of operation).
+
+| Symmetry | Invariant | Domain Representative | la-Silo |
+|----------|-----------|-------------------------|-----------|
+| **Rotational** | Cycle stability | `ternary-ring`, `ternary-cycle` | Math |
+| **Translational** | Shift invariance | `ternary-matrix`, `ternary-route` | Infrastructure |
+| **Scalable** | Self-similarity | `ternary-topology`, `ternary-fractal` | Math / Core |
+| **Reductive** | Information density | `ternary-compiler`, `ternary-optimizer` | Compiler |
 
 ---
 
@@ -39,9 +50,4 @@ Every crate must reference at least 3 other related crates in the fleet to be co
 ## 🔄 Pulse Log
 
 - **2026-06-05 09:10**: Audit completed. 135 isolated crates identified. Framework established.
-- **2026-06-05 09:45**: Bridge between `ternary-types` and `pincher-core/security` implemented.
-- **2026-06-05 09:50**: `SiloGap.md` initialized.
-
----
-
-*"The value of a crate is not in its logic, but in its connections."*
+- **2026-06-05 17:50**: Transitioned from Silo-mapping to Symmetry-mapping. la-Sovereign framework updated.

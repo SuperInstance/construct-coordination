@@ -1,0 +1,10 @@
+[package]
+name = "symbiont-impact"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ternary-cell = { path = "../../../../ternary-cell" }
+strategy-ecology = { path = "../../../../strategy-ecology" }
+ternary-ecosystem = { path = "../../../../ternary-ecosystem" }
+ternary-symbiont = { path = "../../../../ternary-symbiont" }

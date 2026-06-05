@@ -1,0 +1,10 @@
+[package]
+name = "seed-stability"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ternary-seed = { path = "../../../ternary-seed" }
+ternary-genome = { path = "../../../ternary-genome" }
+ternary-dice = { path = "../../../ternary-dice" }
+ternary-arena = { path = "../../../ternary-arena" }

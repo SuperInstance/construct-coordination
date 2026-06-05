@@ -1,0 +1,11 @@
+[package]
+name = "arena-evolution"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ternary-arena = { path = "../../../ternary-arena" }
+ternary-dice = { path = "../../../ternary-dice" }
+ternary-ecosystem = { path = "../../../ternary-ecosystem" }
+ternary-fitness = { path = "../../../ternary-fitness" }
+rand = "0.8"

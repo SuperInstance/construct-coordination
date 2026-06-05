@@ -1,0 +1,11 @@
+[package]
+name = "mud-ternary-bridge"
+version = "0.1.0"
+edition = "2021"
+description = "Experiment: Can mud-arena MUD world mechanics be expressed via ternary fleet crates?"
+
+[dependencies]
+ternary-room = { path = "../../../ternary-room" }
+ternary-cell = { path = "../../../ternary-cell" }
+ternary-current = { path = "../../../ternary-current" }
+ternary-ecosystem = { path = "../../../ternary-ecosystem" }

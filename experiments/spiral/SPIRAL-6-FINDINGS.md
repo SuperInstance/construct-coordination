@@ -44,3 +44,26 @@ The luciddreamer podcast needs these anti-monoculture mechanisms:
 - The Fibonacci period (8 beats) is the natural reset point
 
 A healthy conversation isn't consensus. It's PRODUCTIVE DISAGREEMENT within a shared rhythm.
+
+## Anti-Monoculture Fix Results
+
+With mutation (5%), energy decay, and trust realignment:
+- System OSCILLATES instead of freezing
+- Dominance spread stays 0.3-0.9 (never locks at 1.0)
+- 45 mutations in 200 ticks (22.5% total, 5% rate)
+- Still trends toward +1 majority but never locks
+
+The conversation is HEALTHIER but not yet balanced.
+Next iteration needs: higher mutation rate or coalition-breaking mechanism.
+
+## The Deeper Lesson
+
+A healthy conversation needs ACTIVE DISAGREEMENT INJECTION.
+Left to natural dynamics, RPS converges to monoculture.
+The "interesting" conversation requires maintenance energy.
+
+This maps to our ternary physics:
+- Without tunnel rate: system dies (experiment 10)
+- Without mutation: system locks (ten-forward monoculture)
+- The system needs CONTINUOUS INJECTION OF NOVELTY to stay alive
+- This is the fundamental cost of interesting dynamics

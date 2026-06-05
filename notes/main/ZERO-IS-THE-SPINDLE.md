@@ -80,3 +80,38 @@ The ternary-engine crate's `find_equilibrium_spot()` finds exactly this — the 
 - **ternary-needledrop**: Where you drop the needle — initial conditions that change everything
 
 The fleet IS the studio. Zero IS the spindle.
+
+## The Full Motion: Not Just Where, But How
+
+An 8-ball on a platter isn't just sitting there. It has:
+- **Position** — where on the platter it is (-1, 0, +1)
+- **Velocity** — which direction it's drifting, and how fast
+- **Acceleration** — is it speeding up toward the edge or settling back
+- **Jerk** — sudden shifts, the DJ grabbing the platter
+- **Rhythm** — the pattern of movement over time (period, strength)
+- **Phase** — where in the oscillation cycle it sits right now
+- **Groove alignment** — is it moving WITH the beat or against it
+
+`ternary-motion` tracks all of these. Every agent in the system has a `MotionState`:
+
+```
+position: -1        // Currently at the rim
+velocity: +2.0      // Heading toward +1 fast  
+acceleration: 0.0   // Constant speed
+jerk: 0.0           // No surprises
+ticks_in_state: 0   // Just arrived
+transitions: 47     // Been through a lot
+phase: π            // Bottom of the cycle
+direction: "rising" // On the way up
+```
+
+And the population has a `MotionHealth`:
+- 🧊 FROZEN — everything stopped, 0-state absorbed everyone
+- 😌 SETTLING — slowing down, finding the groove
+- 🔄 TRANSITIONING — mixed, between states
+- 🎶 GROOVING — moving in sync, the sweet spot
+- 🌊 CHAOTIC — moving randomly, no coordination
+
+The DJ reads all of this simultaneously. The 8-ball tells you where the balance is. The velocity tells you which way the crowd is leaning. The rhythm tells you when to drop the next track.
+
+Where the number is at. Where it is going. How fast. What rhythm. What phase. What groove.

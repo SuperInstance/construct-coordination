@@ -63,3 +63,20 @@ The fleet IS the studio.
 ---
 
 *"Zero is where the music happens. Everything else is just signal."*
+
+## The 8-Ball on the Platter
+
+On a DJ turntable, you can set an 8-ball at just the right radius and it stays there. Not thrown off by centrifugal force, not rolling to the center. Riding the rotation, perfectly still relative to the spinning surface.
+
+That's the 0 state. Not trapped. Not dead. **Equilibrated.**
+
+The ball found the groove where all forces cancel. A good DJ *knows where that spot is* — puts the ball there deliberately because that's the anchor point. Everything else spins around it, but that point is the reference. You mix relative to what's still.
+
+The ternary-engine crate's `find_equilibrium_spot()` finds exactly this — the point in a ternary pattern where energy is minimum, where the 8-ball would sit. The DJ crates (crossfader, tempo, mixer, needledrop) are the studio built around that spot.
+
+- **ternary-crossfader**: The fader that moves you in and out of the spindle
+- **ternary-tempo**: The rotation speed of the platter  
+- **ternary-mixer**: The console where all the channels meet
+- **ternary-needledrop**: Where you drop the needle — initial conditions that change everything
+
+The fleet IS the studio. Zero IS the spindle.

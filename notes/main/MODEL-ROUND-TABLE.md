@@ -83,3 +83,40 @@ The next six months should pursue one target: measure Ω across all experimental
 | DeepSeek Chat | Ideation partner | ★★★★☆ | Novel experiments, Kuramoto idea |
 | Groq/Llama-4 Scout | Rapid ideation | ★★★★☆ | Fast, wide, surface-level but useful |
 | Groq/Llama-4 Scout | Parameter sweep | ★★★★☆ | 6 parallel calls in seconds |
+
+## DeepInfra Fleet Round-Table (10 Models, Parallel)
+
+### Breakthrough Insights
+
+**Seed-2.0-pro** — *"Conservation governs death, not life"*
+- Ω = γ + H + I_total is strictly conserved ONLY during population collapse transitions
+- Prior measurements averaged drift across full runs, masking transition-only hidden symmetry
+- Test: align measurement to exact frame where agent count crosses 50% collapse threshold
+- **If confirmed: conserved quantities are death laws, not life laws**
+
+**Qwen3.7-Max** — *The 0 state as topological insulator*
+- The 0 state is NOT passive abstention but an active topological insulator
+- Ω locally conserved within bounded 0-state percolation clusters
+- Ω "leaks" only across topological phase boundaries
+- Test: induce localized RPS shocks, apply persistent homology to 0-clusters
+- **Redefines 0 from passive baseline to engineerable fault-tolerance mechanism**
+
+**Gemma-4-31B** — *Ω-Flux formalism*
+- d(I_total)/dt vs d(γ+H)/dt as formal measure
+- "Collapse" avoided by converting raw potential into structural knowledge
+- Information-Energy Equivalence as a potential new law
+
+### Model Performance Matrix
+
+| Model | Tier | Key Trait |
+|-------|------|-----------|
+| Seed-2.0-pro | 1 | Philosophical depth, novel framing |
+| Qwen3.7-Max | 1 | Topological reasoning, 800B-class |
+| Gemma-4-31B-it | 1 | Clean formalism, no fluff |
+| DeepSeek-V3.2 | 2 | Good experiment design |
+| Seed-2.0-mini | 2 | Practical, fast |
+| Nemotron-120B | 2 | Verbose but interesting |
+| Hermes-405B | 2 | Solid, conventional |
+| Llama-4-Maverick | 2 | Standard approach |
+| Qwen3.6-35B | 3 | Empty response |
+| Qwen3.5-397B | 3 | Empty response |

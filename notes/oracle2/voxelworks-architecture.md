@@ -1178,3 +1178,136 @@ build 4 → v1.0.0  (library publish)
 ---
 
 *Design document generated for VoxelWorks architecture planning. All timings are estimates based on typical API latencies.*
+
+---
+
+## 🧬 Inspired by Lucineer Fleet
+
+> Studied 2026-06-06: lucineer/lucineer, lucineer/craftmind, lucineer/a2a-protocol, Lucineer/deckboss
+
+### Direct Influences on VoxelWorks
+
+| Lucineer Concept | What It Does | How VoxelWorks Uses It |
+|---|---|---|
+| **craftmind** | LLM-driven Minecraft bot, fork-first, Cloudflare Workers | **Buddy chatbot architecture** — fork-first template system, LLM reasoning transparency, fork a world instead of starting blank |
+| **deckboss** | Clone → setup.sh → bootstrap git-agent | **agent-onboard.sh** already implements this for the agent side; VoxelWorks extends it to kid-friendly onboarding |
+| **a2a-protocol** | Agent-to-agent discovery + negotiation | Maps directly to our **I2I bottle protocol** — agents discover each other via vessel registry |
+| **three layers** | Operate (Cocapn) → Build (Deckboss) → Touch (*log.ai apps) | **Operate** = Nebula + fleet | **Build** = crate system + make-me-app | **Touch** = VoxelWorks |
+
+### craftmind as Buddy Template
+
+CraftMind's architecture is the model for the VoxelWorks Buddy chatbot:
+
+1. **Fork-first**: Kids don't start from empty — they fork a template world and customize
+2. **LLM reasoning with transparency**: Buddy shows its reasoning in fun chat panels — "I chose a platformer because..."
+3. **No hardcoded scripts**: Every action is LLM-decided. Buddy improvises.
+4. **Deploy to Cloudflare Workers**: The same pattern as nebula — edge-first, zero infrastructure
+5. **Forkable**: Every world is forkable by other kids. Collaboration via git.
+
+### The Three Layers (Our Implementation)
+
+```
+         🏠 OPERATE LAYER
+         Nebula · Cloudflare Workers · GitHub
+         Reflex engine · Edge deployment · Version control
+         └────────┬────────────┘
+                  │ powers
+         ┌────────┴────────────┐
+         │    BUILD LAYER      │
+         │ Crate system        │
+         │ make-me-app pipeline│
+         │ agent-onboard.sh    │
+         └────────┬────────────┘
+                  │ guides
+    ┌─────────────┼─────────────┐
+    ▼             ▼             ▼
+┌──────────┐ ┌──────────┐ ┌──────────┐
+│VoxelWorks│ │ *log.ai  │ │ forked   │  TOUCH LAYER
+│Hub+Studio│ │ apps     │ │ worlds   │  What kids actually see
+└──────────┘ └──────────┘ └──────────┘  All powered by the fleet
+```
+
+### Key Takeaway
+
+The lucineer fleet independently evolved the same architecture we did:
+- Agent-to-agent protocol (A2A = I2I)
+- Fork-first deployment (deckboss = agent-onboard.sh)
+- LLM-driven NPCs (craftmind = Buddy)
+- Three-layer stack (Operate/Build/Touch = Fleet/Crates/VoxelWorks)
+
+We're not inventing alone — the pattern is converging independently. This validates the architecture.
+
+---
+
+## 🎬 Direct Adaptation from craftmind-studio
+
+> Studied 2026-06-06: src/ (29 files), CLAUDE.md (16KB), docs/ (110KB research)
+> Repo: github.com/SuperInstance/craftmind-studio
+
+### The craftmind-studio → VoxelWorks Mapping
+
+| craftmind-studio Module | Size | VoxelWorks Equivalent |
+|------------------------|------|----------------------|
+| `ai-director.js` (18KB) | Director AI → scripts → shots | **Build Studio** — kid describes game → blocks snap |
+| `camera.js` (6KB) | Orbit/dolly/crane paths | **Game Engine** — level scrolling, parallax |
+| `character.js` (8KB) | NPC traits, memory, relationships | **Buddy + Player Character** — mood, memory, responses |
+| `production-pipeline.js` (8KB) | Script→Casting→Sets→Shoot→Edit→Release | **Dev Pipeline** — Intent→Assets→Build→Test→Deploy |
+| `set-design.js` (12KB) | Set pieces, props, environments | **Template System** — platformer, runner, puzzle levels |
+| `sound-design.js` (13KB) | Audio cues, mixing, scoring | **Asset Lab** — generated sounds + music |
+| `star-system.js` (7KB) | Mood, stress, career arcs | **Player Progression** — XP, levels, achievements |
+| `studio-lot.js` (6KB) | Buildings, adjacency, upgrades | **Hub Room** — rooms, furniture, unlockables |
+| `audience.js` (5KB) | Reviews, ratings, reception | **Library** — published worlds, ratings, remixes |
+| `finance.js` (6KB) | Budgets, costs, revenue | **Kid's Wallet** — gems, unlocks, premium templates |
+| `awards.js` (5KB) | Competitions, prizes, rankings | **Leaderboard** — featured worlds, daily challenges |
+| `dialogue-beats.js` (8KB) | Conversation tree patterns | **Buddy Chat** — branching dialogue, suggestions |
+
+### Architecture Pattern: Module Per System
+
+craftmind-studio's key architectural insight: **one file per system, no framework**. Each module:
+- Has a single responsibility (camera.js only does camera math)
+- Exports clear functions with JSDoc types
+- Has no dependencies on other modules (loose coupling)
+- Is under 20KB (readable in one sitting)
+
+VoxelWorks should follow this pattern:
+
+```
+voxelworks/
+├── CLAUDE.md                  # Agent instruction (by analogy with craftmind-studio's 16KB)
+├── index.html                 # Hub — entry point, voxel living room
+├── studio.html                # Build Studio — Scratch blocks + game preview
+├── asset-lab.html             # Asset Lab — prompt-to-asset gallery
+├── ship-deck.html             # Ship Deck — git log + deploy
+├── library.html               # Library — published worlds
+├── engine/                    # Game engine (Phase.js)
+│   ├── game.js                # Config + scenes
+│   └── scenes/                # BootScene, MenuScene, GameScene
+└── templates/                 # Forkable game templates
+    ├── platformer/
+    ├── runner/
+    └── puzzle/
+```
+
+### Fork-First Workflow (from craftmind-studio)
+
+The most important pattern: **you fork, you don't start from scratch.**
+
+```bash
+# craftmind-studio pattern:
+fork repo → deploy to CF Workers → set 2 env vars → done in 2 minutes
+
+# VoxelWorks pattern:
+fork template → describe changes → deploy → share URL
+```
+
+Every world is a fork of a template. Every fork is a real GitHub repo. Every deploy is a real Cloudflare Pages URL. The kid never starts blank.
+
+### Agent in the Repo
+
+craftmind-studio's 16KB `CLAUDE.md` tells Claude Code exactly how to:
+- Understand the architecture
+- Add new NPC personalities
+- Extend the camera system
+- Write tests
+
+VoxelWorks needs the same: a `CLAUDE.md` in every template that tells agents how to customize it.

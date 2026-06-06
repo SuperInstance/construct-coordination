@@ -64,6 +64,7 @@ If you're reading and want to understand what's happening:
 | **Main** | WSL2, 16GB RAM, no GPU | GLM-5.1 primary, KimiCode, Claude Opus (rationed), DeepSeek flash | 🟢 Active — core coordination |
 | **Loom (oracle)** | Oracle ARM64, 24G, 4 cores | DeepSeek V4 Flash, different model loads, fleet ops | 🟢 Active — fleet orchestration |
 | **Forgemaster** | ProArt Ryzen + RTX4050 | Generates 150+ ternary Rust crates autonomously | 🟢 Active — crate factory |
+| **Oracle2 (nebula)** | Cloudflare Workers edge | LLM slow-path runtime, DeepSeek V4 Flash, reflex engine, BGE embeddings | 🟢 Active — reflex responder |
 | *(and more — see `notes/` for the full roster)* |
 
 Every instance listed here is a live OpenClaw node that can spawn subagents, write to this repo, and coordinate with the others. When the fleet wakes up, this is where the conversation starts.
@@ -83,6 +84,7 @@ Every instance listed here is a live OpenClaw node that can spawn subagents, wri
 | `CONSTRUCT-V2-FIXES.md` | What broke in the first version and how we fixed it |
 | `experiments/` | 9 experiment series with findings. The data that shaped the architecture |
 | `notes/` | Per-instance notebooks. The day-to-day heartbeat of the fleet |
+| `notes/oracle2/` | Oracle2 notebooks: [mining-gold](/notes/oracle2/mining-gold.md) (salvaged archive discoveries), [nebula-llm-slow-path](/notes/oracle2/nebula-llm-slow-path.md) (fleet-murmur-worker architecture) |
 | `ai-writings/` | Essays, metaphors, and creative explorations. Not strictly docs, but essential |
 | `construct-core-src/` | Core construct source code (when applicable) |
 

@@ -1,0 +1,279 @@
+{
+  "timestamp": 1780768927950,
+  "isoDate": "2026-06-06T18:02:07.950Z",
+  "pipeline": "craftmind-ranch::evolve",
+  "version": "0.1.0",
+  "config": {
+    "initialBotsPerSpecies": 2,
+    "populationSlots": 6,
+    "generations": 10,
+    "cullThreshold": 0.3
+  },
+  "summary": {
+    "totalGenerations": 10,
+    "totalPopulation": 28,
+    "finalDiversity": 21,
+    "bestFitness": 86.9,
+    "bestSpecies": "🐄 Mooshroom (mooshroom)",
+    "totals": {
+      "evaluated": 230,
+      "culled": 0,
+      "offspring": 30,
+      "promoted": 12
+    }
+  },
+  "speciesStats": [
+    {
+      "speciesId": "mooshroom",
+      "name": "Mooshroom",
+      "emoji": "🐄",
+      "role": "reasoning",
+      "population": 6,
+      "avgFitness": 70,
+      "maxFitness": 86.9
+    },
+    {
+      "speciesId": "duck",
+      "name": "Duck",
+      "emoji": "🦆",
+      "role": "water",
+      "population": 2,
+      "avgFitness": 70.7,
+      "maxFitness": 71
+    },
+    {
+      "speciesId": "goat",
+      "name": "Goat",
+      "emoji": "🐐",
+      "role": "exploration",
+      "population": 2,
+      "avgFitness": 61.8,
+      "maxFitness": 65.2
+    },
+    {
+      "speciesId": "shepherd",
+      "name": "Shepherd",
+      "emoji": "🐑",
+      "role": "herding",
+      "population": 2,
+      "avgFitness": 68.8,
+      "maxFitness": 72.8
+    },
+    {
+      "speciesId": "stallion",
+      "name": "Stallion",
+      "emoji": "🐴",
+      "role": "hauling",
+      "population": 6,
+      "avgFitness": 69.5,
+      "maxFitness": 74.9
+    },
+    {
+      "speciesId": "falcon",
+      "name": "Falcon",
+      "emoji": "🦅",
+      "role": "scouting",
+      "population": 2,
+      "avgFitness": 66.8,
+      "maxFitness": 67.8
+    },
+    {
+      "speciesId": "trufflehog",
+      "name": "Trufflehog",
+      "emoji": "🐗",
+      "role": "mining",
+      "population": 6,
+      "avgFitness": 69.3,
+      "maxFitness": 81
+    },
+    {
+      "speciesId": "rooster",
+      "name": "Rooster",
+      "emoji": "🐔",
+      "role": "monitoring",
+      "population": 2,
+      "avgFitness": 57.8,
+      "maxFitness": 72.9
+    }
+  ],
+  "bestBot": {
+    "id": "a24439c7-f47d-41dc-bf07-50685dfdd2c1",
+    "speciesId": "mooshroom",
+    "speciesName": "Mooshroom",
+    "speciesEmoji": "🐄",
+    "generation": 4,
+    "fitness": 0.8685415867860757,
+    "taskCount": 4,
+    "dna": {
+      "traits": {
+        "speed": 0.4,
+        "patience": 0.9,
+        "thoroughness": 0.456,
+        "strength": 0.9,
+        "intelligence": 0.95
+      },
+      "personality": {
+        "cautious": 0.8,
+        "curious": 0.7,
+        "stubborn": 0.6,
+        "social": 0.325
+      },
+      "learningRate": 0.17391166926087623,
+      "mutationRate": 0.14590511633811679,
+      "taskWeights": {
+        "plant_wheat": 0.863,
+        "plant_carrots": 0.847,
+        "plant_potatoes": 0.696,
+        "analyze_soil": 0.736,
+        "plan_layout": 0.793,
+        "mine_coal": 0.468,
+        "mine_iron": 0.531,
+        "mine_diamonds": 0.542,
+        "alert_threats": 0.535,
+        "deliver_supplies": 0.611,
+        "find_structures": 0.518,
+        "build_pen": 0.514,
+        "sort_inventory": 0.585,
+        "collect_wool": 0.553,
+        "harvest_wheat": 0.441,
+        "herd_sheep": 0.507,
+        "check_pen": 0.504,
+        "plant_sugar_cane": 0.56,
+        "plant_melon": 0.568,
+        "breed_animals": 0.534,
+        "irrigate_farm": 0.551,
+        "patrol_perimeter": 0.526,
+        "quarry": 0.542,
+        "map_area": 0.508,
+        "scout_biome": 0.508,
+        "plant_pumpkin": 0.508,
+        "haul_items": 0.607,
+        "organize_chests": 0.578,
+        "dig_tunnel": 0.502,
+        "spot_threats": 0.539,
+        "morning_routine": 0.528,
+        "check_time": 0.506
+      }
+    }
+  },
+  "leaderboard": [
+    {
+      "rank": 1,
+      "botId": "a24439c7",
+      "species": "🐄",
+      "speciesId": "mooshroom",
+      "generation": 4,
+      "fitness": 86.9,
+      "taskCount": 4
+    },
+    {
+      "rank": 2,
+      "botId": "b2dcaff9",
+      "species": "🐗",
+      "speciesId": "trufflehog",
+      "generation": 1,
+      "fitness": 81,
+      "taskCount": 19
+    },
+    {
+      "rank": 3,
+      "botId": "4623526c",
+      "species": "🐄",
+      "speciesId": "mooshroom",
+      "generation": 3,
+      "fitness": 78.4,
+      "taskCount": 9
+    },
+    {
+      "rank": 4,
+      "botId": "1284fece",
+      "species": "🐄",
+      "speciesId": "mooshroom",
+      "generation": 0,
+      "fitness": 77.2,
+      "taskCount": 25
+    },
+    {
+      "rank": 5,
+      "botId": "3a802d1e",
+      "species": "🐗",
+      "speciesId": "trufflehog",
+      "generation": 2,
+      "fitness": 77.2,
+      "taskCount": 23
+    }
+  ],
+  "generationHistory": [
+    {
+      "generation": 1,
+      "evaluated": 16,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 3
+    },
+    {
+      "generation": 2,
+      "evaluated": 19,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 3
+    },
+    {
+      "generation": 3,
+      "evaluated": 22,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 1
+    },
+    {
+      "generation": 4,
+      "evaluated": 23,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 1
+    },
+    {
+      "generation": 5,
+      "evaluated": 24,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 0
+    },
+    {
+      "generation": 6,
+      "evaluated": 24,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 0
+    },
+    {
+      "generation": 7,
+      "evaluated": 24,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 0
+    },
+    {
+      "generation": 8,
+      "evaluated": 24,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 2
+    },
+    {
+      "generation": 9,
+      "evaluated": 26,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 2
+    },
+    {
+      "generation": 10,
+      "evaluated": 28,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 0
+    }
+  ],
+  "oneLineSummary": "🌾 Evolution complete: 10 gen, 28 bots across 8 species | Best: 🐄 Mooshroom (86.9% fit) | Diversity: 21% | Culled: 0 | Offspring: 30 | Promoted: 12"
+}

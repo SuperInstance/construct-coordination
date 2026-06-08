@@ -1,0 +1,124 @@
+# 🎵 MIDI Integration Services — Fleet Catalog
+
+> *Supplement to [ECOSYSTEM-MAP.md](./ECOSYSTEM-MAP.md)*
+> *Generated: 2026-06-08*
+> *Every ternary value is musical. Every strategy vector is a melody. Every session exports as MIDI.*
+
+---
+
+## The Tensor-MIDI Layer
+
+The Tensor-MIDI integration bridges ternary {-1, 0, +1} strategy computation with the MIDI protocol. Every ternary value maps to a musical interval, every agent to a voice in a polyphonic ensemble, and every conservation law to a voice-leading rule.
+
+### Wire Format: Fleet Clock Tensor-MIDI
+
+| Service | Repo / Location | Type | Description | Status |
+|---------|-----------------|------|-------------|--------|
+| **Tensor-MIDI Rust** | `forgemaster-archive/products/fleet-clock/src/tensor_midi.rs` | Rust crate | INT8 quantized clock frames with `[0xF1, 0xEE]` magic, CRC-16 validation, drift tensor encoding | 🟢 active |
+| **Tensor-MIDI Python** | `forgemaster-archive/products/metronome-sync/metronome_sync/tensor_midi.py` | Python lib | INT8 quantization of Fraction drift, compact clock snapshots (17 bytes), PLATO tile encoding | 🟢 active |
+| **Tensor-MIDI Fidelity Exp** | `forgemaster-archive/experiments/tensor_midi_fidelity.py` | Experiment | 10-agent Laman topology drift simulation vs INT8 quantized: <0.2% additional drift at δ=1/256 | 🟢 proven |
+| **Fleet Clock** | `forgemaster-archive/products/fleet-clock/` | Rust crate | Anti-fragile PTP sync with Fraction arithmetic, Laman topology, Tensor-MIDI wire format | 🟢 active |
+
+### Rhythm & Temporal Engine
+
+| Service | Repo | Type | Description | Status |
+|---------|------|------|-------------|--------|
+| **ternary-rhythm** | `ternary-rhythm/` | Rust crate | Rhythm structures, metronomes, polyrhythms, syncopation detection, groove analysis, rhythmic evolution | 🟢 active |
+| **Metronome Sync** | `forgemaster-archive/products/metronome-sync/` | Python lib | Anti-fragile PTP clock sync with Fraction-clock, Laman topology, sunset detection | 🟢 active |
+| **Metronome Dashboard** | `forgemaster-archive/products/metronome-dashboard/` | Python CLI | Real-time terminal dashboard for fleet clock sync — offset, drift, pairwise latency | 🟢 active |
+
+### Cognitive Audio & DAW Integration
+
+| Service | Repo | Type | Description | Status |
+|---------|------|------|-------------|--------|
+| **Composite Headspace** | `composite-headspace/` | Node.js CLI | Cognitive DAW — dual-shell reasoning orchestrated by t-minus cueing protocol, symmetry-dissonance synthesis | 🟢 active |
+| **Constraint Audio** | `constraint-theory-core` (external) | Rust crate | Audio DSP backend — lattice oscillators, constraint filters, voice-leading | 🟢 active |
+| **Constraint Dialect** | `constraint-theory-cortex` (external) | MLIR dialect | MLIR Constraint Dialect for harmonic tension, voice leading, and conservation constraints | 🟢 active |
+| **Constraint DSL** | `constraint-theory-cortex` (external) | DSL | Declarative YAML-like DSL for constraint graphs — define musical constraints as code | 🟢 active |
+
+### Fleet Orchestration (MIDI-Aware)
+
+| Service | Repo | Type | Description | Status |
+|---------|------|------|-------------|--------|
+| **Symphony Orchestrator** | `symphony-orchestrator/` | Node.js | One-command master runner for the full cognitive fleet stack — starts MIDI-capable services in dependency order | 🟢 active |
+| **Fleet Bridge** | `fleet-bridge/` | Node.js | A2A dual-transport bridge — can route Tensor-MIDI frames between I2I bottle drops and WebSocket streams | 🟢 active |
+| **Fleet Command Bridge** | `fleet-command-bridge/` | Rust | WebSocket + JSON-RPC bridge — MIDI-capable endpoint for fleet backend queries | 🟢 active |
+| **Fleet Murmur Worker** | `fleet-murmur-worker/` | TypeScript | Serverless agent runtime — fast-path MIDI reflex matching via vector DB, slow-path LLM escalation | 🟢 active |
+
+---
+
+## The Mapping: Ternary → MIDI
+
+| Ternary Concept | MIDI Concept | Mechanism |
+|---|---|---|
+| Ternary value (-1, 0, +1) | Interval direction (down, hold, up) | Cumulative sum → pitch |
+| Strategy vector | Melody | Sequential values → note sequence |
+| Ternary weight mask | Voice leading | Inter-agent weights → harmonic intervals |
+| Tick | Beat | 1 tick = 1 beat (BPM = tick rate) |
+| Density (non-zero fraction) | Rhythmic density | Fraction of ticks with notes |
+| Balance (pos/neg ratio) | Melodic contour | Ascending vs. descending tendency |
+| Surprise | Dissonance | High surprise = unexpected interval |
+| Conservation | Harmonic stability | γ + H ≈ 1.283 - 0.159·log(V) |
+| Species | Musical role | Explorer = soloist, Diplomat = accompanist, etc. |
+| Trust | Consonance/Dissonance | +1 = parallel motion, -1 = contrary motion, 0 = independent |
+| Energy | Dynamics (velocity) | High energy = loud, low energy = soft |
+
+---
+
+## Wire Protocol Reference
+
+### Fleet Clock Tensor-MIDI Frame
+
+```
+[0xF1, 0xEE]   magic         2 bytes
+msg_type                      1 byte  (1=Beacon,2=Tick,3=DriftReport,
+                                        4=CadenceCall,5=Correction,6=Sunset,
+                                        7=Inherit,8=Ack,9=Leave)
+sender_id                     1 byte
+timestamp_quantized           1 byte  (INT8, scale factor configurable)
+payload_len                   1 byte
+payload                    variable
+crc16                         2 bytes  (CRC-16/HQX)
+```
+
+**Total overhead:** 8 bytes + payload
+
+### Clock Snapshot (17 bytes)
+
+```
+[4B true_time_num] [4B true_time_den]
+[1B offset INT8]
+[4B drift_rate_num] [4B drift_rate_den]
+```
+
+### Drift Tensor (N × 1 byte)
+
+Each drift value quantized to INT8. At δ = 1/256, additional drift penalty < 0.2%.
+
+---
+
+## MIDI Export Pipeline
+
+```
+Arena Session Data → MIDI Mapping → MIDI File (Type 1, multitrack)
+                                      ├─ Track 0: Tempo, time sig
+                                      ├─ Track 1: Explorer notes (ch. 1)
+                                      ├─ Track 2: Diplomat notes (ch. 2)
+                                      ├─ Track 3: Marksman notes (ch. 3)
+                                      ├─ Track 4: Climber notes (ch. 4)
+                                      └─ Track 5: Prospector notes (ch. 5)
+```
+
+Each agent's track maps: `pitch = base_note + cumulative_sum(ternary_values)`, `velocity = map(energy, 0..1 → 1..127)`.
+
+---
+
+## Related Documents
+
+- [MIDI Tensor Arena Architecture](../construct-coordination/notes/main/MIDI-TENSOR-ARENA.md) — The full MIDI vision: jazz as strategy ecology, voice leading as conservation, the spreadsheet as piano roll
+- [Tensor-MIDI Prototype README](../prototypes/README.md) — Prototype documentation and quick-start guides
+- [ECOSYSTEM-MAP.md](./ECOSYSTEM-MAP.md) — Full fleet ecosystem map (132 repos)
+
+---
+
+*"The sound of the arena IS a diagnostic. By listening to the MIDI export, you can hear whether the system is healthy."*

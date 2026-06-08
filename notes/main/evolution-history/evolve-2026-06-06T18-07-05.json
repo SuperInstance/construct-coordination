@@ -1,0 +1,170 @@
+{
+  "timestamp": 1780769225986,
+  "isoDate": "2026-06-06T18:07:05.986Z",
+  "pipeline": "craftmind-ranch::evolve-cron",
+  "config": {
+    "initialBotsPerSpecies": 2,
+    "populationSlots": 6,
+    "generations": 3,
+    "cullThreshold": 0.3
+  },
+  "summary": {
+    "totalSpecies": 8,
+    "totalPopulation": 23,
+    "finalDiversity": 17.5,
+    "bestFitness": 88.9,
+    "bestSpecies": "🐔 Rooster (rooster)",
+    "avgSpeciesPop": 2.9,
+    "totals": {
+      "evaluated": 57,
+      "culled": 2,
+      "offspring": 9,
+      "promoted": 9
+    }
+  },
+  "species": [
+    {
+      "id": "mooshroom",
+      "name": "Mooshroom",
+      "emoji": "🐄",
+      "role": "reasoning",
+      "pop": 2,
+      "avgFit": 63.7,
+      "maxFit": 66.2
+    },
+    {
+      "id": "duck",
+      "name": "Duck",
+      "emoji": "🦆",
+      "role": "water",
+      "pop": 2,
+      "avgFit": 67.5,
+      "maxFit": 72
+    },
+    {
+      "id": "goat",
+      "name": "Goat",
+      "emoji": "🐐",
+      "role": "exploration",
+      "pop": 2,
+      "avgFit": 57.9,
+      "maxFit": 65.9
+    },
+    {
+      "id": "shepherd",
+      "name": "Shepherd",
+      "emoji": "🐑",
+      "role": "herding",
+      "pop": 5,
+      "avgFit": 75.6,
+      "maxFit": 83.8
+    },
+    {
+      "id": "stallion",
+      "name": "Stallion",
+      "emoji": "🐴",
+      "role": "hauling",
+      "pop": 3,
+      "avgFit": 74.9,
+      "maxFit": 79.8
+    },
+    {
+      "id": "falcon",
+      "name": "Falcon",
+      "emoji": "🦅",
+      "role": "scouting",
+      "pop": 4,
+      "avgFit": 61.7,
+      "maxFit": 73.5
+    },
+    {
+      "id": "trufflehog",
+      "name": "Trufflehog",
+      "emoji": "🐗",
+      "role": "mining",
+      "pop": 2,
+      "avgFit": 53.4,
+      "maxFit": 66.7
+    },
+    {
+      "id": "rooster",
+      "name": "Rooster",
+      "emoji": "🐔",
+      "role": "monitoring",
+      "pop": 3,
+      "avgFit": 77.8,
+      "maxFit": 88.9
+    }
+  ],
+  "topBots": [
+    {
+      "rank": 1,
+      "id": "2831a4ee",
+      "species": "🐔",
+      "name": "Rooster",
+      "generation": 1,
+      "fitness": 88.9,
+      "tasks": 2
+    },
+    {
+      "rank": 2,
+      "id": "7efc434f",
+      "species": "🐑",
+      "name": "Shepherd",
+      "generation": 2,
+      "fitness": 83.8,
+      "tasks": 5
+    },
+    {
+      "rank": 3,
+      "id": "3e4b4821",
+      "species": "🐑",
+      "name": "Shepherd",
+      "generation": 3,
+      "fitness": 82.8,
+      "tasks": 3
+    },
+    {
+      "rank": 4,
+      "id": "b2e93ddc",
+      "species": "🐴",
+      "name": "Stallion",
+      "generation": 0,
+      "fitness": 79.8,
+      "tasks": 10
+    },
+    {
+      "rank": 5,
+      "id": "ba58b2bd",
+      "species": "🐔",
+      "name": "Rooster",
+      "generation": 0,
+      "fitness": 79.6,
+      "tasks": 10
+    }
+  ],
+  "generations": [
+    {
+      "gen": 1,
+      "evaluated": 16,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 3
+    },
+    {
+      "gen": 2,
+      "evaluated": 19,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 3
+    },
+    {
+      "gen": 3,
+      "evaluated": 22,
+      "culled": 2,
+      "offspring": 3,
+      "promoted": 3
+    }
+  ],
+  "oneLine": "🌾 Evo cron: 3 gen × 8 species (23 bots) → Best 🐔 Rooster @ 88.9% | Diversity 17.5% | Culled 2 | Offspring 9 | Promoted 9"
+}

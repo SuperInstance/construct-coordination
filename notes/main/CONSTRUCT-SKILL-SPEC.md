@@ -205,7 +205,7 @@ Entry points are the only callable surfaces of a skill. The construct layer vali
     "prerelease": "",
     "build": "tier1"
   },
-  "authors": ["ZeroClaw Scout <scout@superinstance.io>"],
+  "authors": ["ZeroClaw Scout <scout@superinstance.ai>"],
   "license": "MIT",
   "tier_requirements": {
     "min_tier": "tier1",

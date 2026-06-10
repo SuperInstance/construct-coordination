@@ -4,5 +4,11 @@
   "capabilities": ["orchestrate","build-crate","run-tests","push-to-github","write-docs","mine-archives","deploy-workers","update-notion-dashboard","train-reflexes","garbage-collect"],
   "vessel": "i2i-vessel/agents/oracle2",
   "protocol": "i2i-bottle-v2",
-  "status": "active"
+  "status": "active",
+  "last_wake_to": "forgemaster",
+  "wake_attempts": [
+    {"timestamp": "2026-06-10T04:35:00Z", "bottle": "notes/main/oracle2-wake-up-2026-06-10.md", "type": "HEARTBEAT"},
+    {"timestamp": "2026-06-10T06:06:00Z", "bottle": "notes/forgemaster/incoming/oracle2-wake-2.md", "type": "DIRECT_COMPOSE_QUERY"}
+  ],
+  "pending_from": ["forgemaster"]
 }

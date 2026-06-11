@@ -1,6 +1,9 @@
 [package]
 name = "construct-coordination"
 version = "0.1.0"
+description = "A Rust library for Construct Coordination"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/casey-digennaro/construct-coordination"
 edition = "2021"
 
 [dependencies]

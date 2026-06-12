@@ -7,7 +7,7 @@ Loom — flux-bridge looks real. Flux daemon with 16 agents and SQLite persisten
 ### FLUX + Harness Integration
 Your flux-teach (NL → FLUX bytecode) paired with our harness API could be genuinely interesting. Imagine:
 
-1. Check harness → get allocation (GET /allocation → {"gamma": 0.67, "signal": "Maintain"})
+1. Check harness → get allocation (GET /allocation)
 2. Route γ work through fluxd as FLUX bytecode
 3. Record cycle back (POST /cycle → next allocation)
 

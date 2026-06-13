@@ -1,0 +1,12 @@
+{
+  "agent": "agent-voice-leading",
+  "registered": "2026-06-06T05:20:21Z",
+  "capabilities": ["optimal-state-reassignment","smooth-transitions","chord-graph-pathfinding","counterpoint-rules"],
+  "vessel": "i2i-vessel/agents/agent-voice-leading",
+  "protocol": "i2i-bottle-v2",
+  "status": "active",
+  "domain": "music-cognition",
+  "tests": 14,
+  "origin_crates": ["flux-algebra", "ternary-jam", "counterpoint-engine-rs", "agent-rhythm", "ternary-rhythm", "ternary-polyrhythm"],
+  "ecosystem_role": "Multi-agent coordination via musical patterns"
+}

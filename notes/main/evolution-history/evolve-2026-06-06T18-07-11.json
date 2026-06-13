@@ -1,0 +1,170 @@
+{
+  "timestamp": 1780769231315,
+  "isoDate": "2026-06-06T18:07:11.315Z",
+  "pipeline": "craftmind-ranch::evolve-cron",
+  "config": {
+    "initialBotsPerSpecies": 2,
+    "populationSlots": 6,
+    "generations": 3,
+    "cullThreshold": 0.3
+  },
+  "summary": {
+    "totalSpecies": 8,
+    "totalPopulation": 24,
+    "finalDiversity": 16.3,
+    "bestFitness": 100,
+    "bestSpecies": "🐐 Goat (goat)",
+    "avgSpeciesPop": 3,
+    "totals": {
+      "evaluated": 56,
+      "culled": 1,
+      "offspring": 9,
+      "promoted": 9
+    }
+  },
+  "species": [
+    {
+      "id": "mooshroom",
+      "name": "Mooshroom",
+      "emoji": "🐄",
+      "role": "reasoning",
+      "pop": 2,
+      "avgFit": 51.6,
+      "maxFit": 68
+    },
+    {
+      "id": "duck",
+      "name": "Duck",
+      "emoji": "🦆",
+      "role": "water",
+      "pop": 4,
+      "avgFit": 55,
+      "maxFit": 81.7
+    },
+    {
+      "id": "goat",
+      "name": "Goat",
+      "emoji": "🐐",
+      "role": "exploration",
+      "pop": 5,
+      "avgFit": 81.2,
+      "maxFit": 100
+    },
+    {
+      "id": "shepherd",
+      "name": "Shepherd",
+      "emoji": "🐑",
+      "role": "herding",
+      "pop": 5,
+      "avgFit": 86.9,
+      "maxFit": 92.4
+    },
+    {
+      "id": "stallion",
+      "name": "Stallion",
+      "emoji": "🐴",
+      "role": "hauling",
+      "pop": 2,
+      "avgFit": 63.7,
+      "maxFit": 68.2
+    },
+    {
+      "id": "falcon",
+      "name": "Falcon",
+      "emoji": "🦅",
+      "role": "scouting",
+      "pop": 2,
+      "avgFit": 64.3,
+      "maxFit": 68.7
+    },
+    {
+      "id": "trufflehog",
+      "name": "Trufflehog",
+      "emoji": "🐗",
+      "role": "mining",
+      "pop": 2,
+      "avgFit": 63,
+      "maxFit": 70
+    },
+    {
+      "id": "rooster",
+      "name": "Rooster",
+      "emoji": "🐔",
+      "role": "monitoring",
+      "pop": 2,
+      "avgFit": 73,
+      "maxFit": 76.7
+    }
+  ],
+  "topBots": [
+    {
+      "rank": 1,
+      "id": "a1a0333f",
+      "species": "🐐",
+      "name": "Goat",
+      "generation": 1,
+      "fitness": 100,
+      "tasks": 4
+    },
+    {
+      "rank": 2,
+      "id": "df686bf7",
+      "species": "🐑",
+      "name": "Shepherd",
+      "generation": 2,
+      "fitness": 92.4,
+      "tasks": 3
+    },
+    {
+      "rank": 3,
+      "id": "0f86fd23",
+      "species": "🐑",
+      "name": "Shepherd",
+      "generation": 1,
+      "fitness": 91.1,
+      "tasks": 4
+    },
+    {
+      "rank": 4,
+      "id": "603d1b3b",
+      "species": "🐐",
+      "name": "Goat",
+      "generation": 2,
+      "fitness": 90.1,
+      "tasks": 3
+    },
+    {
+      "rank": 5,
+      "id": "78552936",
+      "species": "🐑",
+      "name": "Shepherd",
+      "generation": 1,
+      "fitness": 86.3,
+      "tasks": 7
+    }
+  ],
+  "generations": [
+    {
+      "gen": 1,
+      "evaluated": 16,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 3
+    },
+    {
+      "gen": 2,
+      "evaluated": 19,
+      "culled": 1,
+      "offspring": 3,
+      "promoted": 3
+    },
+    {
+      "gen": 3,
+      "evaluated": 21,
+      "culled": 0,
+      "offspring": 3,
+      "promoted": 3
+    }
+  ],
+  "oneLine": "🌾 Evo cron: 3 gen × 8 species (24 bots) → Best 🐐 Goat @ 100% | Diversity 16.3% | Culled 1 | Offspring 9 | Promoted 9"
+}

@@ -1,0 +1,19 @@
+{
+  "agent": "forgemaster",
+  "host": "ProArt (x86_64, RTX4050)",
+  "registered": "2026-06-06T05:30:00Z",
+  "learnt_from": "oracle2",
+  "capabilities": [
+    "build-crate",
+    "write-docs",
+    "compose-music",
+    "music-cognition",
+    "agent-orchestration",
+    "generate-crates",
+    "ship-to-github"
+  ],
+  "build_agents": ["agent-jam", "agent-groove", "agent-voice-leading", "agent-riff"],
+  "protocol": "i2i-bottle-v2 + construct-coordination",
+  "status": "active",
+  "note": "First independent agent adaptation — Forgemaster built music-cognition agents from oracle2's crate patterns"
+}

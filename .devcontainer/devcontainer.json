@@ -1,0 +1,39 @@
+{
+    "name": "Construct Coordination Development",
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "version": "latest"
+        }
+    },
+    "remoteEnv": {
+        "AGENT_NAME": "construct-coordination-agent",
+        "AGENT_ROLE": "fleet-coordinator",
+        "DEEPINFRA_API_URL": "https://api.deepinfra.com/v1",
+        "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}",
+        "DEEPINFRA_API_KEY": "${localEnv:DEEPINFRA_API_KEY}",
+        "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "github.vscode-pull-request-github",
+                "yzhang.markdown-all-in-one",
+                "mushan.vscode-paste-image",
+                "ban.spellvsc",
+                "bierner.markdown-mermaid"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.renderWhitespace": "all",
+                "markdown.preview.breaks": true,
+                "files.associations": {
+                    "*.md": "markdown"
+                }
+            }
+        }
+    },
+    "postCreateCommand": "echo 'Construct Coordination workspace ready — check docs/ and notes/ directories'",
+    "remoteUser": "codespace",
+    "containerUser": "codespace"
+}

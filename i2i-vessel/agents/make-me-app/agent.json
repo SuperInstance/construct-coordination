@@ -1,0 +1,16 @@
+{
+  "agent": "make-me-app",
+  "broker": "oracle2",
+  "registered": "2026-06-06T05:15:00Z",
+  "capabilities": [
+    "build-web-app",
+    "deploy-pages",
+    "create-countdown",
+    "customize-template",
+    "instant-app"
+  ],
+  "registry": "SuperInstance/make-me-app",
+  "endpoint": "nebula://reflex:make-me-a",
+  "protocol": "nebula-reflex",
+  "status": "active"
+}

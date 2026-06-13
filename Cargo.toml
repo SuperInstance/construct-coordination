@@ -1,16 +1,18 @@
 [package]
 name = "construct-coordination"
 version = "0.1.0"
-description = "A Rust library for Construct Coordination"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/casey-digennaro/construct-coordination"
 edition = "2021"
 
-[dependencies]
-superinstance-protocol = { path = "../superinstance-protocol" }
-superinstance-agent-trait = { path = "../superinstance-agent-trait" }
-superinstance-cocapn = { path = "../superinstance-cocapn" }
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+[[example]]
+name = "composition_demo"
+path = "examples/composition_demo.rs"
 
-[dev-dependencies]
+[dependencies]
+circuit-breaker = { path = "../circuit-breaker" }
+rate-limiter = { path = "../rate-limiter" }
+health-check = { path = "../health-check" }
+retry-backoff = { path = "../retry-backoff" }
+load-balancer = { path = "../load-balancer" }
+config-center = { path = "../config-center" }
+feature-flag = { path = "../feature-flag" }
+service-discovery = { path = "../service-discovery" }
